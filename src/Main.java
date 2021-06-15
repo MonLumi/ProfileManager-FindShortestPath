@@ -49,10 +49,20 @@ public class Main {
                 }
 
                 //Deleted ID
-                case 5 -> {}
+                case 5 -> {
+                    int isRepeat;
+                    do {
+                        Tools.deletedID();
+
+                        System.out.print("Do you want to delete another staff? (\"1\" for Yes): ");
+                        isRepeat = Integer.parseInt(keyboard.nextLine());
+                    } while (isRepeat == 1);
+                }
 
                 //Balance Tree
-                case 6 -> {}
+                case 6 -> {
+                    tree.balanceHelper();
+                }
 
                 //
                 case 7 -> {}
