@@ -18,4 +18,15 @@ public class Tools {
         tree.insert(new Person(id, name));
     }
 
+    public static void findID() {
+        System.out.print("ID: ");
+        int id = Integer.parseInt(keyboard.nextLine());
+        Node result = tree.search(id);
+
+        if (result == null) System.out.println("The ID isn't exist!");
+        else {
+            System.out.println("Found staff");
+            result.display();
+        }
+    }
 }

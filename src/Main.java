@@ -38,7 +38,15 @@ public class Main {
                 }
 
                 //Find ID
-                case 4 -> {}
+                case 4 -> {
+                    int isRepeat;
+                    do {
+                        Tools.findID();
+
+                        System.out.print("Do you want to find another staff? (\"1\" for Yes): ");
+                        isRepeat = Integer.parseInt(keyboard.nextLine());
+                    } while (isRepeat == 1);
+                }
 
                 //Deleted ID
                 case 5 -> {}
@@ -58,7 +66,7 @@ public class Main {
                 //type mistake
                 default -> {}
             }
-        } while (choice < 10);
+        } while (choice > 0);
     }
 
 
