@@ -1,11 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner keyboard = new Scanner(System.in);
     static Tree tree = new Tree();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Database.firstDatabase();
+        Graph.importFile();
+        Graph.declareVert();
+        Graph.addVertInfo();
 
         int choice;
         do {
@@ -64,11 +68,15 @@ public class Main {
                     tree.balanceHelper();
                 }
 
-                //
-                case 7 -> {}
+                //Deep First Travel Graph
+                case 7 -> {
+                    Graph.deepFirstTravel();
+                }
 
+                //Find the shortest path
+                case 8 -> {
 
-                case 8 -> {}
+                }
 
                 //exit
                 case 0 -> {}
