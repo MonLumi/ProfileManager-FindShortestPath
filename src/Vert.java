@@ -4,6 +4,7 @@ public class Vert {
     boolean isVisited;
     String name;
     ArrayList<Edge> edgeList = new ArrayList<>();
+    int distance = 9999;
 
     public Vert(String name) {
         this.isVisited = false;
@@ -22,6 +23,9 @@ public class Vert {
         return link.end;
     }
 
+    public void findShortestPath(Vert start, Vert end) {
+
+    }
 
     public void fullDisplay() {
         System.out.println("Vert " + name);

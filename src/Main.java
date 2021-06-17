@@ -64,22 +64,16 @@ public class Main {
                 }
 
                 //Balance Tree
-                case 6 -> {
-                    tree.balanceHelper();
-                }
+                case 6 -> tree.balanceHelper();
 
                 //Deep First Travel Graph
-                case 7 -> {
-                    Graph.deepFirstTravel();
-                }
+                case 7 -> Graph.deepFirstTravel();
 
                 //Find the shortest path
-                case 8 -> {
-
-                }
+                case 8 -> Graph.Dijkstra();
 
                 //exit
-                case 0 -> {}
+                case 0 -> System.out.println("Your input isn't correct, please try again!");
 
                 //type mistake
                 default -> {}
