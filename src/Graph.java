@@ -6,7 +6,8 @@ public class Graph {
     static int[][] weightMatrix;
     static final int INF = 9999;
     static ArrayList<Vert> adjList = new ArrayList<>();
-    static LinkedList<Vert> stack = new LinkedList<>();
+    static LinkedList<Vert> dfsStack = new LinkedList<>();
+    static LinkedList<Vert> bfsQueue = new LinkedList<>();
 
     static LinkedList<Vert> knownVert = new LinkedList<>();
     public Graph() {}
@@ -46,24 +47,34 @@ public class Graph {
         }
     }
 
-    public static void deepFirstTravel() {
-        Vert start = adjList.get(0);
-        dfs(start);
-        System.out.println();
-    }
-
-    private static void dfs(Vert vert) {
-        stack.push(vert);
+    public static void deepFirstTravel(Vert vert) {
+        dfsStack.push(vert);
         vert.setVisited();
         System.out.print(vert.name + " ");
         for (Edge link : vert.edgeList) {
             Vert next = vert.getNext(link);
             if (next.isVisited) continue;
-            dfs(next);
+            deepFirstTravel(next);
         }
     }
 
-    public static void findPathRecursion(Vert start, Vert end) {
+    public static void breadFirstTravel(Vert vert) {
+        if (vert == null) return;
+        if (bfsQueue.size() == 0) {
+            bfsQueue.addLast(vert);
+            vert.setVisited();
+        }
+        for (Edge link : vert.edgeList) {
+            Vert next = link.end;
+            if (next.isVisited) continue;
+            bfsQueue.addLast(next);
+            next.setVisited();
+        }
+        System.out.print(bfsQueue.removeFirst().name + " ");
+        breadFirstTravel(bfsQueue.peekFirst());
+    }
+
+    public static void findShortestPath(Vert start, Vert end) {
         knownVert.addLast(start);
         while (knownVert.peekLast() != end) {
             if (knownVert.size() == 0) break;
@@ -107,11 +118,11 @@ public class Graph {
         return minVertDistance;
     }
 
-    public static void Dijkstra() {
+    public static void DijkstraResult() {
         Vert start = adjList.get(0);
         Vert end = adjList.get(4);
         start.distance = 0;
-        findPathRecursion(start, end);
+        findShortestPath(start, end);
 
         Vert out = knownVert.removeFirst();
         while (out != end) {
@@ -120,5 +131,12 @@ public class Graph {
         }
         System.out.println(out.name);
         System.out.println("Total distance: " + out.distance);
+    }
+
+    public static void resetGraphStatus() {
+        for (Vert vert : adjList) {
+            vert.isVisited = false;
+            vert.distance = INF;
+        }
     }
 }

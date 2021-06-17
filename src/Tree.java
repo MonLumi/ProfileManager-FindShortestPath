@@ -58,6 +58,18 @@ public class Tree {
         preOrderHelper(node.getRight());
     }
 
+    public void postOrder() {
+        postOrderHelper(root);
+    }
+
+    private void postOrderHelper(Node node) {
+        if (node == null) return;
+
+        postOrderHelper(node.getLeft());
+        postOrderHelper(node.getRight());
+        node.display();
+    }
+
     //I use iterative not recursive
     public Node search(int id) {
         Node curr = root;
@@ -124,11 +136,11 @@ public class Tree {
         Tree temp = new Tree();
         partition(nodeList, 0, nodeList.size(), temp);
 
-        temp.inOrder();
-        System.out.println();
-        temp.preOrder();
-        System.out.println();
-        temp.breadFirstTravel();
+        Main.tree = temp;
+        System.out.println("Balance successful!");
+        Main.lineBreak();
+        System.out.print("Press Enter...");
+        Main.functionChoice.nextLine();
     }
 
     private void inOrderPop(Node node, ArrayList<Node> list) {
