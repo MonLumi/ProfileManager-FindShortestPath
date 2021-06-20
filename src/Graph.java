@@ -78,6 +78,7 @@ public class Graph {
         knownVert.addLast(start);
         while (knownVert.peekLast() != end) {
             if (knownVert.size() == 0) break;
+
             Vert current = knownVert.peekLast();
             //relax all edge from current
             for (Edge link : current.edgeList) {
@@ -119,8 +120,15 @@ public class Graph {
     }
 
     public static void DijkstraResult() {
-        Vert start = adjList.get(0);
-        Vert end = adjList.get(4);
+        //Vert start = adjList.get(0);
+        //Vert end = adjList.get(4);
+
+        System.out.print("Start point: ");
+        char s = Main.functionChoice.nextLine().toUpperCase().charAt(0);
+        System.out.print("End point: ");
+        char e = Main.functionChoice.nextLine().toUpperCase().charAt(0);
+        Vert start = adjList.get(s - 65);
+        Vert end = adjList.get(e - 65);
         start.distance = 0;
         findShortestPath(start, end);
 

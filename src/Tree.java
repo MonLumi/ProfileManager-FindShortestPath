@@ -24,11 +24,11 @@ public class Tree {
             node = new Node(person);
             return node;
         }
-        if (node.getID() == person.getId()) {
+        if (node.getID().equalsIgnoreCase(person.getId())) {
             System.out.println("Duplicate ID, can't add new employee!");
             return node;
         } else {
-            if (node.getID() > person.getId()) node.setLeft(insertRecursion(node.getLeft(), person));
+            if (node.getID().compareToIgnoreCase(person.getId()) > 0) node.setLeft(insertRecursion(node.getLeft(), person));
             else node.setRight(insertRecursion(node.getRight(), person));
         }
         return node;
@@ -71,13 +71,26 @@ public class Tree {
     }
 
     //I use iterative not recursive
-    public Node search(int id) {
+    public Node search(String id) {
         Node curr = root;
-        while (curr != null && curr.getID() != id) {
-            if (id < curr.getID()) curr = curr.getLeft();
+        while (curr != null && !curr.getID().equalsIgnoreCase(id)) {
+            if (id.compareToIgnoreCase(curr.getID()) < 0) curr = curr.getLeft();
             else  curr = curr.getRight();
         }
         return curr;
+    }
+
+    public ArrayList<Node> searchContain(String id) {
+        ArrayList<Node> results = new ArrayList<>();
+        Node curr = root;
+        while (curr != null) {
+            if (curr.getID().contains(id) || id.contains(curr.getID())) {
+                results.add(curr);
+            }
+            if (id.compareToIgnoreCase(curr.getID()) < 0) curr = curr.getLeft();
+            else  curr = curr.getRight();
+        }
+        return results;
     }
 
     public void breadFirstTravel() {
@@ -92,8 +105,8 @@ public class Tree {
         }
     }
 
-    public void delete(int id) {
-        if (root.getID() == id) {
+    public void delete(String id) {
+        if (root.getID().equalsIgnoreCase(id)) {
             Node successor = root.getRight();
             while (successor.getLeft() != null) {
                 successor = successor.getLeft();
@@ -106,12 +119,14 @@ public class Tree {
     }
 
     //need to read
-    private Node deleteHelper(Node node, int id) {
+    private Node deleteHelper(Node node, String id) {
         if (node == null) return null;
 
-        if (id < node.getID()) node.setLeft(deleteHelper(node.getLeft(), id));
-        else if (id > node.getID()) node.setRight(deleteHelper(node.getRight(), id));
-        else {
+        if (id.compareToIgnoreCase(node.getID()) < 0) {
+            node.setLeft(deleteHelper(node.getLeft(), id));
+        } else if (id.compareToIgnoreCase(node.getID()) > 0) {
+            node.setRight(deleteHelper(node.getRight(), id));
+        } else {
             if (node.getLeft() == null) return node.getRight();
             else if (node.getRight() == null) return node.getLeft();
 
@@ -122,7 +137,7 @@ public class Tree {
                     successor = successor.getLeft();
                 }
 
-                int key = successor.getID();
+                String key = successor.getID();
                 node.setRight(deleteHelper(node.getRight(), key));
             }
         }

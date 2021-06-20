@@ -32,7 +32,7 @@ public class Main {
                     } while (isRepeat == 1);
                 }
 
-                //Inorder
+                //Deep First Travel
                 case 2 -> {
                     int isRepeat;
                     do {
@@ -166,13 +166,30 @@ public class Main {
 
                 //Find the shortest path
                 case 8 -> {
+                    /*
                     Graph.resetGraphStatus();
-                    System.out.println("Find Shorted path from A to E");
+                    System.out.println("Find Shorted path");
+                    System.out.println("Enter the start/end point by these letters: A, B, C, D, E, F and G");
                     lineBreak();
                     Graph.DijkstraResult();
                     lineBreak();
                     System.out.print("Press Enter...");
                     functionChoice.nextLine();
+                    */
+
+                    int isRepeat;
+                    do {
+                        Graph.resetGraphStatus();
+                        System.out.println("Find Shorted path");
+                        System.out.println("Enter the start/end point by these letters: A, B, C, D, E, F and G");
+                        lineBreak();
+                        Graph.DijkstraResult();
+
+                        System.out.print("Do you want to find another path? (\"1\" for Yes): ");
+                        isRepeat = Integer.parseInt(functionChoice.nextLine());
+                        System.out.println();
+                    } while (isRepeat == 1);
+
                 }
 
                 //exit

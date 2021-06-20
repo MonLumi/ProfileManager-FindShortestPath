@@ -33,4 +33,6 @@ public class Vert {
         for (Edge edge : edgeList) edge.display();
         System.out.println();
     }
+
+
 }

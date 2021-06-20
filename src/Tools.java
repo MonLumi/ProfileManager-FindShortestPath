@@ -6,7 +6,7 @@ public class Tools {
 
     public static void addEmployee() {
         System.out.print("ID: ");
-        int id = Integer.parseInt(keyboard.nextLine());
+        String id = keyboard.nextLine().toUpperCase();
         if (Main.tree.search(id) != null) {
             System.out.println("Duplicate ID, try Again");
             return;
@@ -23,7 +23,7 @@ public class Tools {
 
     public static void findID() {
         System.out.print("ID: ");
-        int id = Integer.parseInt(keyboard.nextLine());
+        String id = keyboard.nextLine().toUpperCase();
         Node result = tree.search(id);
         Main.lineBreak();
         if (result == null) System.out.println("The ID isn't exist!");
@@ -36,7 +36,7 @@ public class Tools {
 
     public static void deletedID() {
         System.out.print("ID: ");
-        int id = Integer.parseInt(keyboard.nextLine());
+        String id = keyboard.nextLine().toUpperCase();
         Node result = tree.search(id);
         Main.lineBreak();
         if (result == null) System.out.println("The ID isn't exist!");

@@ -31,7 +31,7 @@ public class Node {
         this.right = right;
     }
 
-    public int getID() {
+    public String getID() {
         return this.person.getId();
     }
 
